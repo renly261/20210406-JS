@@ -11,6 +11,7 @@
       height: 100vh;
       position: fixed;
       background: black;
+      vertical-align: middle;
     }
     body {
       margin: 0;
@@ -32,11 +33,17 @@
     // 當載入狀態改變時
     // interactive = 載入完 HTML 時
     // complete = 整個網頁載入完時
-    document.onreadystatechange = () => {
-      if (document.readyState === 'complete') {
-        loading.style.display = 'none'
-      }
+    // document.onreadystatechange = () => {
+    //   if (document.readyState === 'complete') {
+    //     loading.style.display = 'none'
+    //   }
+    // }
+    
+    window.onload = () => {
+      console.log('window onload');
+      loading.style.display = 'none'
     }
+
   </script>
 </body>
 </html>
