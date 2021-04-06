@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #outer {
+        width: 500px;
+        height: 500px;
+        background-color: orange;
+    }
+
+    #inner {
+        width: 300px;
+        height: 300px;
+        background-color: red;
+    }
+</style>
+
+<body>
+    <input type="button" id="btn1" value="按鈕">
+    <hr>
+    <input type="button" value="1" class="btns">
+    <input type="button" value="2" class="btns">
+    <input type="button" value="3" class="btns">
+    <hr>
+    <a href="https://google.com" id="link">連結</a>
+    <div id="outer">
+        <div id="inner"></div>
+    </div>
+
+
+    <script>
+        // 抓取 Id
+        const btn1 = document.getElementById('btn1')
+        btn1.onclick = () => {
+            alert('點了按鈕')
+        }
+
+        // getElementsByClassName 無法用 for each
+        const btns = document.getElementsByClassName('btns')
+
+        // 無法直接用 btns.onclick = () => {} 必須要用迴圈
+        for (const btn of btns) {
+            btn.onclick = () => {
+                alert('點按鈕')
+            }
+        }
+
+        const link = document.getElementById('link')
+        link.onclick = (event) => {
+
+            // // 阻止事件預設動作
+            event.preventDefault()
+
+            // F12 console MouseEvent 
+            // pageX pageY:東西在整個頁面的位置
+            // screenX screenY:東西在螢幕的位置
+            // clientX clientY:東西在可見範圍的位置(當前不捲動瀏覽器的顯示區域)
+            // offsetX offsetY:東西相對於外層元素的位置(類似 外層 position:relative 內層 position:absolute top: left:)
+            // target:觸發事件的東西
+            console.log(event)
+        }
+
+        document.onkeydown = (event) => {
+
+            // F12 console KeyboardEvent 
+            // 鍵盤按鍵的 keycode 可到 https://keycode.info/ 查詢
+            console.log(event);
+        }
+
+        const outer = document.getElementById('outer')
+        const inner = document.getElementById('inner')
+        outer.onclick = (event) => {
+            console.log('outer')
+        }
+        inner.onclick = (event) => {
+
+            // 阻止事件冒泡 如果不阻止事件冒泡點裡面的元素會連外面的元素一起選到
+            event.stopPropagation()
+            console.log('inner')
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

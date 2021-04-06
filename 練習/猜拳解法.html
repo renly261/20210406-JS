@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="剪刀" class="btns">
+    <input type="button" value="石頭" class="btns">
+    <input type="button" value="布" class="btns">
+    <ul id="history"></ul>
+    <script>
+        const options = ['剪刀', '石頭', '布']
+        const btns = document.getElementsByClassName('btns')
+        const history = document.getElementById('history')
+
+        for (const btn of btns) {
+            btn.onclick = () => {
+                const player = btn.value
+
+                // Math.random()*3=>0~1之間隨機數字*3=0~2.999...之間的隨機數,Math.floor()=>無條件捨去0~2.999得到0 1 2的隨機整數
+                const computer = options[Math.floor(Math.random() * 3)]
+
+                // 先設一個空間給結果 之後再塞進去
+                let result = ''
+
+                if (player === computer) {
+                    result = '平手'
+                } else if (
+                    (computer === '剪刀' && player === '石頭') ||
+                    (computer === '石頭' && player === '布') ||
+                    (computer === '布' && player === '剪刀')
+                ) {
+                    result = '贏'
+                } else {
+                    result = '輸'
+                }
+                const text = `你出${player}，電腦出${computer}，${result}`
+                alert(text)
+                history.insertAdjacentHTML('beforeend', `<li>${text}</li>`)
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #cat {
+        position: absolute;
+
+        /* 無法反白 */
+        user-select: none;
+
+        /* 無法拖曳 瀏覽器前墜:-webkit-(google) -moz-(firfox) -ms-(ie edge) */
+        -webkit-user-drag: none;
+
+        /* 透明 */
+        opacity: 0;
+    }
+</style>
+
+<body>
+    <!-- 聲音標籤 加 controls 可以顯示控制面板 volume 最小0 最大1 -->
+    <audio src="./meow.mp3" volume="0.0" id="audio"></audio>
+    <img src="./cat.jpg" alt="" width="300px" id="cat">
+    <script>
+        const audio = document.getElementById('audio')
+        const cat = document.getElementById('cat')
+
+        // window.innerWidth window.innerHeight:視窗大小,不含工具列 要減掉是為了防止圖片跑到邊緣外
+        const catX = Math.round(Math.random() * (window.innerWidth - 300))
+        const catY = Math.round(Math.random() * (window.innerHeight - 200))
+
+        // position:absolute 要+單位(px)
+        cat.style.left = catX + 'px'
+        cat.style.top = catY + 'px'
+
+        // 1 - 滑鼠和貓的距離 / 頁面最長距離(音量公式,滑鼠和貓的距離越大 (1 - 滑鼠和貓的距離 / 頁面最長距離)值越小=>音量越小)
+        // 頁面最長距離(斜邊)=開根號(寬平方+高平方)
+        const max = Math.round(Math.sqrt(Math.pow(window.innerWidth, 2) + Math.pow(window.innerHeight, 2)))
+
+        window.onmousemove = (event) => {
+            // 滑鼠位置
+            const mouseX = event.pageX
+            const mouseY = event.pageY
+
+            // 滑鼠和貓的 X 軸距離
+            const disX = Math.abs(mouseX - catX)
+
+            // 滑鼠和貓的 Y 軸距離
+            const disY = Math.abs(mouseX - catY)
+
+            // // 滑鼠和貓的距離
+            const dis = Math.round(Math.sqrt(Math.pow(disX, 2) + Math.pow(disY, 2)))
+            console.log(dis);
+
+            audio.volume = 1 - (dis / max)
+        }
+
+        // 每半秒播一次聲音
+        let seconds = 0
+        let timer = setInterval(() => {
+            seconds++
+            if (seconds % 5 == 0) {
+                audio.play()
+            }
+        }, 100)
+
+
+        cat.onclick = () => {
+            // 點擊圖片停止聲音
+            clearInterval(timer)
+
+            // 點擊圖片 圖片從透明變不透明
+            cat.style.opacity = 1
+
+            cat.onclick = null
+            alert(`你花了 ${seconds / 10} 秒`)
+        }
+    </script>
+</body>
+
+</html>

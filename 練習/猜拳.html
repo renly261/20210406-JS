@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="剪刀" id="btn1">
+    <input type="button" value="石頭" id="btn2">
+    <input type="button" value="布" id="btn3">
+    <ul id="ul">
+
+    </ul>
+
+    <script>
+        const btn1 = document.getElementById('btn1')
+        const btn2 = document.getElementById('btn2')
+        const btn3 = document.getElementById('btn3')
+        const ul = document.getElementById('ul')
+        let output = ['剪刀', '石頭', '布']
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min)) + min
+        }
+        btn1.onclick = () => {
+            const num = rand(0, 2)
+            if (output[num] == btn1.value) {
+                alert(`你出${btn1.value} 電腦出${output[num]} 平手`)
+                ul.insertAdjacentHTML('afterend', `<li>你出${btn1.value} 電腦出${output[num]} 平手</li>`)
+            }
+            else if (output[num] == btn2.value) {
+                alert(`你出${btn1.value} 電腦出${output[num]} 電腦贏`)
+                ul.insertAdjacentHTML('afterend', `<li>你出${btn1.value} 電腦出${output[num]} 電腦贏</li>`)
+            }
+            else if (output[num] == btn3.value) {
+                alert(`你出${btn1.value} 電腦出${output[num]} 你贏`)
+                ul.insertAdjacentHTML('afterend', `<li>你出${btn1.value} 電腦出${output[num]} 你贏`)
+
+            }
+        }
+
+        btn2.onclick = () => {
+            const num = rand(0, 2)
+            if (output[num] == btn2.value) {
+                alert(`你出${btn2.value} 電腦出${output[num]} 平手`)
+            }
+            else if (output[num] == btn3.value) {
+                alert(`你出${btn2.value} 電腦出${output[num]} 電腦贏`)
+            }
+            else if (output[num] == btn1.value) {
+                alert(`你出${btn2.value} 電腦出${output[num]} 你贏`)
+            }
+        }
+
+        btn3.onclick = () => {
+            const num = rand(0, 2)
+            if (output[num] == btn3.value) {
+                alert(`你出${btn3.value} 電腦出${output[num]} 平手`)
+            }
+            else if (output[num] == btn1.value) {
+                alert(`你出${btn3.value} 電腦出${output[num]} 電腦贏`)
+            }
+            else if (output[num] == btn2.value) {
+                alert(`你出${btn3.value} 電腦出${output[num]} 你贏`)
+            }
+        }
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
