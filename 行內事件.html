@@ -10,9 +10,14 @@
   <input type="button" value="按鈕" onclick="alert('hi')">
   <h1 onclick="this.innerText = 'a'">文字</h1>
   <h1 onclick="changeText(this)">文字</h1>
+  <h1 onclick="dosomething()">123</h1>
   <script>
     const changeText = (element) => {
       element.innerText = new Date().toLocaleString('zh-tw')
+    }
+
+    const dosomething = () => {
+      alert('hi')
     }
   </script>
 </body>
