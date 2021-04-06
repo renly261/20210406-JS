@@ -12,6 +12,8 @@
   <input type="button" value="1" class="btns">
   <input type="button" value="2" class="btns">
   <input type="button" value="3" class="btns">
+  <hr>
+  <a href="https://google.com" id="link">連結</a>
   <script>
     const btn1 = document.getElementById('btn1')
     btn1.onclick = () => {
@@ -23,6 +25,18 @@
       btn.onclick = () => {
         alert('點按鈕')
       }
+    }
+
+    const link = document.getElementById('link')
+    link.onclick = (event) => {
+      event.preventDefault()
+
+      // pageX pageY = 東西在整個頁面的位置
+      // screenX screenY = 東西在螢幕的位置
+      // clientX clienY = 東西在可見範圍的位置
+      // offsetX offsetY = 東西相對於外層元素的位置
+      // target = 觸發事件的東西
+      console.log(event)
     }
   </script>
 </body>
