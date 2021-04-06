@@ -8,10 +8,21 @@
 </head>
 <body>
   <input type="button" id="btn1" value="按鈕">
+  <hr>
+  <input type="button" value="1" class="btns">
+  <input type="button" value="2" class="btns">
+  <input type="button" value="3" class="btns">
   <script>
     const btn1 = document.getElementById('btn1')
     btn1.onclick = () => {
       alert('點了按鈕')
+    }
+
+    const btns = document.getElementsByClassName('btns')
+    for (const btn of btns) {
+      btn.onclick = () => {
+        alert('點按鈕')
+      }
     }
   </script>
 </body>
