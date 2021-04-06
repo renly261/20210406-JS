@@ -11,16 +11,28 @@
       height: 100vh;
       position: fixed;
       background: black;
+      display: table;
+      transition: opacity 1s;
+    }
+    #loading-in {
+      display: table-cell;
       vertical-align: middle;
+      text-align: center;
+      color: white;
     }
     body {
       margin: 0;
+      overflow: hidden;
     }
   </style>
 </head>
 <body>
   <div id="loading">
-    <img src="./test.svg" alt="">
+    <div id="loading-in">
+      <img src="./test.svg" alt="">
+      <br>
+      <p>載入中...</p>
+    </div>
   </div>
   <img src="https://unsplash.com/photos/yiW2yzZNnFo/download?force=true" alt="">
   <img src="https://unsplash.com/photos/gLHI-o3Xiq8/download?force=true" alt="">
@@ -40,10 +52,13 @@
     // }
     
     window.onload = () => {
-      console.log('window onload');
-      loading.style.display = 'none'
+      console.log('window onload')
+      loading.style.opacity = 0
+      setTimeout(() => {
+        loading.style.display = 'none'
+        document.body.style.overflow = 'unset'
+      }, 1000);
     }
-
   </script>
 </body>
 </html>
