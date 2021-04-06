@@ -5,6 +5,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    #outer {
+      width: 500px;
+      height: 500px;
+      background-color: orange;
+    }
+    #inner {
+      width: 300px;
+      height: 300px;
+      background-color: red;
+    }
+  </style>
 </head>
 <body>
   <input type="button" id="btn1" value="按鈕">
@@ -14,6 +26,9 @@
   <input type="button" value="3" class="btns">
   <hr>
   <a href="https://google.com" id="link">連結</a>
+  <div id="outer">
+    <div id="inner"></div>
+  </div>
   <script>
     const btn1 = document.getElementById('btn1')
     btn1.onclick = () => {
@@ -42,6 +57,16 @@
     document.onkeydown = (event) => {
       // 鍵盤按鍵可至 https://keycode.info/ 查詢
       console.log(event)
+    }
+
+    const outer = document.getElementById('outer')
+    const inner = document.getElementById('inner')
+    outer.onclick = (event) => {
+      console.log('outer')
+    }
+    inner.onclick = (event) => {
+      event.stopPropagation()
+      console.log('inner')
     }
   </script>
 </body>
